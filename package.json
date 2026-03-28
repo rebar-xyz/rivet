@@ -1,0 +1,90 @@
+{
+  "name": "@rebarxyz/rivet",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Minimal Cosmos SDK transaction signing library",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./wallet": {
+      "types": "./dist/wallet.d.ts",
+      "import": "./dist/wallet.js",
+      "default": "./dist/wallet.js"
+    },
+    "./modules": {
+      "types": "./dist/modules/index.d.ts",
+      "import": "./dist/modules/index.js",
+      "default": "./dist/modules/index.js"
+    },
+    "./modules/bank": {
+      "types": "./dist/modules/bank.d.ts",
+      "import": "./dist/modules/bank.js",
+      "default": "./dist/modules/bank.js"
+    },
+    "./modules/staking": {
+      "types": "./dist/modules/staking.d.ts",
+      "import": "./dist/modules/staking.js",
+      "default": "./dist/modules/staking.js"
+    },
+    "./modules/gov": {
+      "types": "./dist/modules/gov.d.ts",
+      "import": "./dist/modules/gov.js",
+      "default": "./dist/modules/gov.js"
+    },
+    "./modules/distribution": {
+      "types": "./dist/modules/distribution.d.ts",
+      "import": "./dist/modules/distribution.js",
+      "default": "./dist/modules/distribution.js"
+    },
+    "./mock": {
+      "types": "./dist/mock.d.ts",
+      "import": "./dist/mock.js",
+      "default": "./dist/mock.js"
+    }
+  },
+  "scripts": {
+    "build": "bun run build:main && bun run build:wallet && bun run build:modules && bun run build:mock && bun run build:declarations",
+    "build:main": "bun build src/index.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
+    "build:wallet": "bun build src/wallet.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
+    "build:modules": "bun build src/modules/index.ts src/modules/bank.ts src/modules/staking.ts src/modules/gov.ts src/modules/distribution.ts --outdir=dist/modules --entry-naming=[name].[ext] --target=browser --packages=external",
+    "build:mock": "bun build src/mock.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
+    "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
+    "clean": "rm -rf dist",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.9.0",
+    "@noble/hashes": "^1.8.0",
+    "bech32": "^2.0.0"
+  },
+  "optionalDependencies": {
+    "@scure/bip32": "^1.6.0"
+  },
+  "devDependencies": {
+    "@cosmjs/amino": "^0.38.1",
+    "@cosmjs/crypto": "^0.38.1",
+    "@cosmjs/encoding": "^0.38.1",
+    "@cosmjs/math": "^0.38.1",
+    "@cosmjs/proto-signing": "^0.38.1",
+    "@cosmjs/stargate": "^0.38.1",
+    "@types/bun": "latest",
+    "cosmjs-types": "^0.11.0",
+    "long": "^5.2.3",
+    "typescript": "^5.0.0",
+    "vitest": "^1.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
