@@ -54,11 +54,8 @@
     }
   },
   "scripts": {
-    "build": "bun run build:main && bun run build:wallet && bun run build:modules && bun run build:mock && bun run build:declarations",
-    "build:main": "bun build src/index.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
-    "build:wallet": "bun build src/wallet.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
-    "build:modules": "bun build src/modules/index.ts src/modules/bank.ts src/modules/staking.ts src/modules/gov.ts src/modules/distribution.ts --outdir=dist/modules --entry-naming=[name].[ext] --target=browser --packages=external",
-    "build:mock": "bun build src/mock.ts --outdir=dist --entry-naming=[name].[ext] --target=browser --packages=external",
+    "build": "bun run clean && bun run build:js && bun run build:declarations",
+    "build:js": "bun build src/index.ts src/wallet.ts src/mock.ts src/modules/index.ts src/modules/bank.ts src/modules/staking.ts src/modules/gov.ts src/modules/distribution.ts --outdir=dist --splitting --target=browser --packages=external --root=src",
     "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
     "clean": "rm -rf dist",
     "test": "vitest run"
