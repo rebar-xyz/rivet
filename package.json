@@ -2,7 +2,7 @@
   "name": "@rebarxyz/rivet",
   "version": "0.1.1",
   "license": "MIT",
-  "description": "Minimal Cosmos SDK transaction signing library",
+  "description": "Minimalist Cosmos SDK client library",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
