@@ -1,6 +1,6 @@
 {
   "name": "@rebarxyz/rivet",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "MIT",
   "packageManager": "bun@1.3.9",
   "description": "Minimalist Cosmos SDK client library",
